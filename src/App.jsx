@@ -14,6 +14,7 @@ import CreatePatientScreen from './Screens/CreatePatientScreen/CreatePatientScre
 import CreateAppointmentScreen from './Screens/CreateAppointmentScreen/CreateAppointmentScreen'
 import PatientsScreen from './Screens/PatientsScreen/PatientsScreen'
 import EditPatientScreen from './Screens/EditPatientScreen/EditPatientScreen'
+import EditAppointmentScreen from './Screens/EditAppointmentScreen/EditAppointmentScreen'
 
 function App() {
   return (
@@ -59,6 +60,13 @@ function App() {
               <CreateAppointmentScreen />
             </WorkspaceContextProvider>
           } />
+
+          <Route path="/edit-appointment/:id" element={
+            <WorkspaceContextProvider>
+              <EditAppointmentScreen />
+            </WorkspaceContextProvider>
+          } />
+          
           <Route path="/create-patient" element={<CreatePatientScreen />} />
           <Route path="/patients" element={<PatientsScreen />} />
           <Route path="/edit-patient/:id" element={<EditPatientScreen />} />

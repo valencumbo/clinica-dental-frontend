@@ -87,3 +87,25 @@
 }
 
 .btn-edit:hover { background-color: #ced4da; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .patients-container {
+        padding: 15px;
+    }
+
+    .patients-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .btn-new-patient {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .patients-grid {
+        grid-template-columns: 1fr;
+    }
+}

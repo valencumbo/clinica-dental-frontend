@@ -42,7 +42,7 @@ const CreatePatientScreen = () => {
                 </div>
                 
                 <form onSubmit={handleSubmit} className="create-form">
-                    <div style={{ display: 'flex', gap: '15px' }}>
+                    <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
                         <div className="form-group" style={{ flex: 1 }}>
                             <label>Nombre:</label>
                             <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required placeholder="Ej: María" />
@@ -53,7 +53,7 @@ const CreatePatientScreen = () => {
                         </div>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '15px' }}>
+                    <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
                         <div className="form-group" style={{ flex: 1 }}>
                             <label>Teléfono:</label>
                             <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="Ej: 1123456789" />

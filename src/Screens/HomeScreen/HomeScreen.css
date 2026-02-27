@@ -143,3 +143,40 @@
     border-radius: 6px;
     margin-bottom: 20px;
 }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .dashboard-main {
+        padding: 20px 15px; 
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: stretch; 
+        gap: 15px;
+        text-align: center;
+    }
+
+    .dashboard-actions > div,
+    .dashboard-actions a,
+    .btn-primary {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+        margin-left: 0; 
+        text-align: center;
+        align-items: center; 
+    }
+
+    .workspaces-grid {
+        grid-template-columns: 1fr;
+    }
+}
