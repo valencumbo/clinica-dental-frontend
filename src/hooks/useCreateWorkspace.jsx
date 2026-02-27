@@ -10,25 +10,38 @@ const useCreateWorkspace = () => {
     const [errors, setErrors] = useState({})
 
     const handleCreateWorkspace = async (form_values) => {
-        // Validaciones manuales antes de enviar
         const newErrors = {};
 
-        if (!form_values.title || form_values.title.trim() === '') {
-            newErrors.title = 'El título del espacio de trabajo es obligatorio.';
+        if (!form_values.name || form_values.name.trim() === '') {
+            newErrors.name = 'El nombre del tratamiento es obligatorio.';
         }
 
-        if (!form_values.description || form_values.description.trim() === '') {
-            newErrors.description = 'La descripción es obligatoria.';
-        } else if (form_values.description.length > 1000) {
+        if (form_values.description && form_values.description.length > 1000) {
             newErrors.description = 'La descripción no puede superar los 1000 caracteres.';
+        }
+
+        if (!form_values.price || isNaN(form_values.price) || Number(form_values.price) <= 0) {
+            newErrors.price = 'El precio es obligatorio y debe ser mayor a 0.';
+        }
+
+        if (!form_values.duration || isNaN(form_values.duration) || Number(form_values.duration) <= 0) {
+            newErrors.duration = 'La duración en minutos es obligatoria y debe ser mayor a 0.';
         }
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
             setErrors({});
+
+            const payload = {
+                name: form_values.name,
+                description: form_values.description,
+                price: Number(form_values.price),
+                duration: Number(form_values.duration)
+            }
+
             await sendRequest(async () => {
-                await createWorkspace(form_values)
+                await createWorkspace(payload)
                 navigate('/home')
             })
         }
@@ -36,8 +49,10 @@ const useCreateWorkspace = () => {
 
     const { form_state, onChangeFieldValue, onSubmitForm } = useForm({
         initial_form_fields: {
-            title: '',
-            description: ''
+            name: '',
+            description: '',
+            price: '',
+            duration: ''
         },
         onSubmit: handleCreateWorkspace
     })

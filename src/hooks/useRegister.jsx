@@ -3,7 +3,7 @@ import useForm from "./useForm"
 import useRequest from "./useRequest"
 
 function useRegister (){
-     const {loading, error, response, sendRequest} = useRequest()
+    const {loading, error, response, sendRequest} = useRequest()
 
     /* Que campos existe en mi formulario y que valor tienen */
     const form_initial_state = {

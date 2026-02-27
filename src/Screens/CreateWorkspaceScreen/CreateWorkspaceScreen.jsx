@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router';
-import useCreateWorkspace from '../../hooks/useCreateWorkspace';
-import './CreateWorkspaceScreen.css';
+import React from 'react'
+import { Link } from 'react-router'
+import useCreateWorkspace from '../../hooks/useCreateWorkspace'
+import './CreateWorkspaceScreen.css'
 
 const CreateWorkspaceScreen = () => {
     const {
@@ -11,62 +11,91 @@ const CreateWorkspaceScreen = () => {
         isLoading,
         error,
         errors
-    } = useCreateWorkspace();
+    } = useCreateWorkspace()
 
     return (
-        <div className="create-workspace-container">
-            <div className="create-workspace-card">
-                <header className="create-workspace-header">
-                    <h1>Crear un nuevo espacio de trabajo</h1>
-                    <p>Los espacios de trabajo son donde tu equipo se comunica.</p>
-                </header>
-
-                <form className="workspace-form" onSubmit={onSubmitForm}>
+        <div className="create-container">
+            <div className="create-card">
+                <div className="create-header">
+                    <h2>🩺 Agregar Nuevo Tratamiento</h2>
+                    <p>Registrá un nuevo servicio para la clínica dental.</p>
+                </div>
+                
+                <form onSubmit={onSubmitForm} className="create-form">
                     <div className="form-group">
-                        <label htmlFor="title" className="form-label">Nombre del espacio de trabajo</label>
+                        <label htmlFor="name">Nombre del Tratamiento:</label>
                         <input
                             type="text"
-                            id="title"
-                            name="title"
-                            className="form-input"
-                            placeholder="Ej. Proyecto Alpha"
-                            value={form_state.title}
+                            id="name"
+                            name="name"
+                            value={form_state.name}
                             onChange={onChangeFieldValue}
-                            disabled={isLoading}
+                            placeholder="Ej: Ortodoncia con brackets"
+                            className={errors.name ? 'input-error' : ''}
                         />
-                        {errors.title && <span className="error-message">⚠️ {errors.title}</span>}
+                        {errors.name && <span className="error-text">{errors.name}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="description" className="form-label">Descripción</label>
+                        <label htmlFor="description">Descripción:</label>
                         <textarea
                             id="description"
                             name="description"
-                            className="form-textarea"
-                            placeholder="¿De qué trata este espacio?"
                             value={form_state.description}
                             onChange={onChangeFieldValue}
-                            disabled={isLoading}
+                            placeholder="Detalles sobre en qué consiste el tratamiento..."
+                            rows="3"
+                            className={errors.description ? 'input-error' : ''}
                         />
-                        <div className={`char-counter ${form_state.description.length > 900 ? 'limit-near' : ''} ${form_state.description.length >= 1000 ? 'limit-reached' : ''}`}>
-                            {form_state.description.length} / 1000
-                        </div>
-                        {errors.description && <span className="error-message">⚠️ {errors.description}</span>}
+                        {errors.description && <span className="error-text">{errors.description}</span>}
                     </div>
 
-                    {error && <div className="error-message">Error al crear el workspace: {error.message}</div>}
+                    <div className="form-group">
+                        <label htmlFor="price">Precio Estimado ($):</label>
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            value={form_state.price}
+                            onChange={onChangeFieldValue}
+                            placeholder="Ej: 50000"
+                            className={errors.price ? 'input-error' : ''}
+                        />
+                        {errors.price && <span className="error-text">{errors.price}</span>}
+                    </div>
 
-                    <button type="submit" className="submit-btn" disabled={form_state.description.length > 1000 || isLoading}>
-                        {isLoading ? 'Creando...' : 'Crear espacio de trabajo'}
-                    </button>
+                    <div className="form-group">
+                        <label htmlFor="duration">Duración Estimada (minutos):</label>
+                        <input
+                            type="number"
+                            id="duration"
+                            name="duration"
+                            value={form_state.duration}
+                            onChange={onChangeFieldValue}
+                            placeholder="Ej: 45"
+                            className={errors.duration ? 'input-error' : ''}
+                        />
+                        {errors.duration && <span className="error-text">{errors.duration}</span>}
+                    </div>
+
+                    {error && (
+                        <div className="server-error">
+                            ⚠️ {error.message}
+                        </div>
+                    )}
+
+                    <div className="form-actions">
+                        <Link to="/home" className="btn-cancel">
+                            Cancelar
+                        </Link>
+                        <button type="submit" disabled={isLoading} className="btn-submit">
+                            {isLoading ? 'Guardando...' : 'Guardar Tratamiento'}
+                        </button>
+                    </div>
                 </form>
-
-                <div className="back-link">
-                    <Link to="/home">Volver a la lista de workspaces</Link>
-                </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default CreateWorkspaceScreen;
+export default CreateWorkspaceScreen
