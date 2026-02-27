@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { loginUser } from "../services/authService";
 
 export const AuthContext = createContext()
 
@@ -17,15 +18,31 @@ function decodeAuthToken(auth_token) {
 function AuthContextProvider({ children }) {
     const auth_token = localStorage.getItem(AUTH_TOKEN_KEY)
     
-    // Evaluamos si hay token Y si se pudo decodificar correctamente
     const initial_session = auth_token ? decodeAuthToken(auth_token) : null
     
     const [isLogged, setIsLogged] = useState(Boolean(initial_session))
     const [session, setSession] = useState(initial_session)
 
+async function login(email, password) {
+        try {
+            const response = await loginUser(email, password)
+            
+            const token = response.data?.auth_token
+            
+            if (token) {
+                saveSession(token)
+                return response
+            } else {
+                throw new Error("El servidor no envió el token de acceso")
+            }
+        } catch (error) {
+            logout()
+            throw error 
+        }
+    }
+
     function saveSession(new_auth_token) {
         localStorage.setItem(AUTH_TOKEN_KEY, new_auth_token)
-        
         const session_decoded = decodeAuthToken(new_auth_token)
         
         if (session_decoded) {
@@ -43,6 +60,7 @@ function AuthContextProvider({ children }) {
     }
 
     const providerValues = {
+        login,
         saveSession,
         logout,
         session,

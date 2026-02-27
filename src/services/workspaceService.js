@@ -65,3 +65,25 @@ export async function deleteTreatment(id) {
     
     return response
 }
+
+export async function updateTreatment(id, treatment_data) {
+    const response_http = await fetch(
+        URL_API + '/api/treatments/' + id,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('auth_token'),
+            },
+            body: JSON.stringify(treatment_data)
+        }
+    )
+    
+    const response = await response_http.json()
+    
+    if (!response_http.ok) {
+        throw new ServerError(response.message || 'Error al actualizar el tratamiento', response_http.status)
+    }
+    
+    return response
+}

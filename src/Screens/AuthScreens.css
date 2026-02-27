@@ -1,0 +1,123 @@
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 20px;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    border-top: 6px solid #007bff;
+}
+
+.auth-logo {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.auth-card h2 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.auth-card p {
+    color: #7f8c8d;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.auth-form {
+    text-align: left;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid #dee2e6;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+    background-color: #fff;
+}
+
+.btn-auth {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-auth:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.btn-auth:active {
+    transform: translateY(0);
+}
+
+.auth-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f3f5;
+    font-size: 0.95rem;
+    color: #7f8c8d;
+}
+
+.auth-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.error-msg {
+    background-color: #fff5f5;
+    color: #e03131;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid #fa5252;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-align: left;
+}

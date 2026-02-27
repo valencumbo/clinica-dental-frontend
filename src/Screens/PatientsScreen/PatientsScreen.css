@@ -1,0 +1,89 @@
+.patients-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.patients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.patients-header h2 {
+    margin: 0;
+    color: #0056b3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-new-patient {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-new-patient:hover { background-color: #0056b3; }
+
+.patients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.patient-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid #007bff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.patient-name {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.patient-details p {
+    margin: 8px 0;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.patient-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit {
+    flex: 1;
+    text-align: center;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-edit:hover { background-color: #ced4da; }

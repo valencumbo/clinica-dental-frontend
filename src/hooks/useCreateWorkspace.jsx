@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router"
 import { useState } from "react"
 import useRequest from "./useRequest"
 import { createWorkspace } from "../services/workspaceService"
 import useForm from "./useForm"
 
 const useCreateWorkspace = () => {
-    const navigate = useNavigate()
     const { loading, error, sendRequest } = useRequest()
     const [errors, setErrors] = useState({})
 
@@ -42,7 +40,7 @@ const useCreateWorkspace = () => {
 
             await sendRequest(async () => {
                 await createWorkspace(payload)
-                navigate('/home')
+                window.location.href = '/home'
             })
         }
     }

@@ -1,9 +1,8 @@
 import { ServerError } from "../utils/errorUtils"
 
-
 const URL_API = import.meta.env.VITE_API_URL;
 
-export async function login(email, password) {
+export async function loginUser(email, password) {
     const response_http = await fetch(
         URL_API + '/api/auth/login',
         {
@@ -11,53 +10,39 @@ export async function login(email, password) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(
-                {
-                    password: password,
-                    email: email
-                }
-            )
+            body: JSON.stringify({
+                password: password,
+                email: email
+            })
         }
     )
+    
     const response = await response_http.json()
-    if (!response.ok) {
-        throw new ServerError(response.message, response.status)
+    
+    if (!response_http.ok) {
+        throw new ServerError(response.message || 'Error al iniciar sesión', response_http.status)
     }
+    
     return response
 }
 
-export async function register(username, password, email) {
+export async function registerUser(userData) {
     const response_http = await fetch(
         URL_API + '/api/auth/register',
         {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', //Configuramos que voy enviar JSON en la peticion
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify( //transforma un Object a JSON en formato string
-                {
-                    username: username,
-                    password: password,
-                    email: email
-                }
-            )
+            body: JSON.stringify(userData)
         }
     )
 
-    //Transformar la respuesta HTTP para obtener los datos que nos envio por body el servidor
-    //Como el servidor envia JSON debemos tomar la response como json (.json())
     const response = await response_http.json()
-    if (!response.ok) {
-        throw new ServerError(response.message, response.status)
+    
+    if (!response_http.ok) {
+        throw new ServerError(response.message || 'Error en el registro', response_http.status)
     }
+    
     return response
 }
-/* 
-response body example:
-{
-    "message": "Usuario creado exitosamente",
-    "status": 201,
-    "ok": true,
-    "data": null
-}
-*/
